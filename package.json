@@ -1,0 +1,28 @@
+{
+    "name": "dynamic-webserver",
+    "version": "0.0.0",
+    "description": "Dynamic Web Server using Node JS",
+    "author": {
+        "name": "Brandon Torralba",
+        "email": "torr4112@stthomas.edu"
+    },
+    "contributors": [
+        {
+            "name": "Ben Elliot",
+            "email": "ben.elliot@stthomas.edu"
+        },
+        {
+            "name": "Tonya Hopkins",
+            "email": "tjhopkins@stthomas.edu"
+        }
+    ],
+    "main": "server.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/torr4112/CISC375Project2"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "sqlite3": "^5.0.0"
+    }
+}
