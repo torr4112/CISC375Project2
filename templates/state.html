@@ -6,20 +6,38 @@
     <title>US Energy Consumption</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/foundation.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 
     <script type="application/javascript">
         // `state` and arrays of consumption per year => set these variables equal to appropriate value
         //   * these variables will be defined and accessible from any script loaded after this one
         var state = '{{STATE_VAR}}';
-        var coal_counts = {{COAL_COUNTS}};  // e.g. [1234, 2567, ...]
-        var natural_gas_counts = {{NG_COUNTS}};
-        var nuclear_counts = {{N_COUNTS}};
-        var petroleum_counts = {{P_COUNTS}};
-        var renewable_counts = {{R_COUNTS}};
+        var coal_counts;  // e.g. [1234, 2567, ...]
+        var natural_gas_counts;
+        var nuclear_counts;
+        var petroleum_counts;
+        var renewable_counts;
     </script>
 </head>
-<body onload="console.log(state, coal_counts, natural_gas_counts, nuclear_counts, petroleum_counts, renewable_counts)">
+<body>
+    <div class="top-bar">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li><a href="/year/2018">Home</a></li>
+            <li>
+                <a href="">State</a>
+                <ul class="menu onlyShowFive" id="states"></ul>
+            </li>
+            <li>
+                <a href="">Year</a>
+                <ul class="menu onlyShowFive" id="years"></ul>
+            </li>
+            <li>
+                <a href="">Energy Source</a>
+                <ul class="menu" id="energy"></ul>
+            </li>
+        </ul>
+    </div>
+
     <div class="grid-container">
         <div class="grid-x grid-padding-x">
             <div class="cell auto">
@@ -42,20 +60,25 @@
                 </table>
             </div>
         </div>
+
+        <hr /><br />
         <canvas id="myChart" style="width:100%;"></canvas>
 
+        <hr /><br />
+        <div class="float-left">
+            <a id="previous">Previous</a>
+        </div>
+
+        <div class="float-right">
+            <a id="next">Next</a>
+        </div>
     </div>
-
-
-
 
     <script>
         var xValues = [];
         for (let i = 0; i < 59; i++) {
             xValues.push(i + 1960);
         }
-
-        var percentages = [];
 
         new Chart("myChart", {
             type: "line",
@@ -91,34 +114,40 @@
                         backgroundColor: "purple",
                         label: "Renewable",
                         fill: true
-                    }
-            ]
+                }]
             },
             options: {
                 legend: {display: false},
                 scales: {
+                    /*
                     x: {
                         title: {
                             display: true,
                             text: 'Month'
                         }
-                    },
+                    },*/
                     y: {
-                            stacked: true,
-                            title: {
-                            display: true,
-                            text: 'Value'
-                        }
+                        stacked: true,
                     }
-                }, 
+                }/*, 
                 interaction: {
                     mode: 'nearest',
                     axis: 'y',
                     intersect: false
+                }*/
+                ,     interaction: {
+                    intersect: false
                 }
             }
         });
-
     </script>
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/vendor.js"></script>
+    <script src="/js/foundation.js"></script>
+    <script type="application/javascript">
+        $(document).foundation();
+    </script>
+    <script src="/js/nav.js"></script>
 </body>
 </html>

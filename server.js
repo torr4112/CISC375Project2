@@ -122,12 +122,12 @@ app.get('/state/:selected_state', (req, res) => {
                 }
                 template = template.replace('{{DATA}}', tr);
                 template = template.replace('{{STATE_VAR}}', state);
-                template = template.replace('{{COAL_COUNTS}}', `[${coal_counts}]`);
-                template = template.replace('{{NG_COUNTS}}', `[${natural_gas_counts}]`);
-                template = template.replace('{{N_COUNTS}}', `[${nuclear_counts}]`);
-                template = template.replace('{{P_COUNTS}}', `[${petroleum_counts}]`);
-                template = template.replace('{{R_COUNTS}}', `[${renewable_counts}]`);
-    
+                template = template.replace("coal_counts", `coal_counts = [${coal_counts}]`);
+                template = template.replace("natural_gas_counts", `natural_gas_counts = [${natural_gas_counts}]`);
+                template = template.replace("nuclear_counts", `nuclear_counts = [${nuclear_counts}]`);
+                template = template.replace("petroleum_counts", `petroleum_counts = [${petroleum_counts}]`);
+                template = template.replace("renewable_counts", `renewable_counts = [${renewable_counts}]`);
+
                 res.status(200).type('html').send(template);
             }
         });
@@ -173,7 +173,7 @@ app.get('/energy/:selected_energy_source', (req, res) => {
                 }
                 template = template.replace('{{DATA}}', tr);
                 template = template.replace('{{TYPE_VAR}}', source);
-                template = template.replace('{{E_COUNTS}}', `[${energy_counts}]`);
+                template = template.replace('energy_counts', `energy_counts = [${energy_counts}]`);
     
                 res.status(200).type('html').send(template);
             }
