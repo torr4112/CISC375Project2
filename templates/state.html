@@ -6,6 +6,8 @@
     <title>US Energy Consumption</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/foundation.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
     <script type="application/javascript">
         // `state` and arrays of consumption per year => set these variables equal to appropriate value
         //   * these variables will be defined and accessible from any script loaded after this one
@@ -40,6 +42,83 @@
                 </table>
             </div>
         </div>
+        <canvas id="myChart" style="width:100%;"></canvas>
+
     </div>
+
+
+
+
+    <script>
+        var xValues = [];
+        for (let i = 0; i < 59; i++) {
+            xValues.push(i + 1960);
+        }
+
+        var percentages = [];
+
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{ 
+                        data: coal_counts,
+                        borderColor: "red",
+                        backgroundColor: "red",
+                        label: "Coal",
+                        fill: true
+                    }, { 
+                        data: natural_gas_counts,
+                        borderColor: "green",
+                        backgroundColor: "green",
+                        label: "Natural Gas",
+                        fill: true
+                    }, { 
+                        data: nuclear_counts,
+                        borderColor: "blue",
+                        backgroundColor: "blue",
+                        label: "Nuclear",
+                        fill: true
+                    }, { 
+                        data: petroleum_counts,
+                        borderColor: "orange",
+                        backgroundColor: "orange",
+                        label: "Petroleum",
+                        fill: true
+                    }, { 
+                        data: renewable_counts,
+                        borderColor: "purple",
+                        backgroundColor: "purple",
+                        label: "Renewable",
+                        fill: true
+                    }
+            ]
+            },
+            options: {
+                legend: {display: false},
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    },
+                    y: {
+                            stacked: true,
+                            title: {
+                            display: true,
+                            text: 'Value'
+                        }
+                    }
+                }, 
+                interaction: {
+                    mode: 'nearest',
+                    axis: 'y',
+                    intersect: false
+                }
+            }
+        });
+
+    </script>
 </body>
 </html>

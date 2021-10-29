@@ -6,6 +6,7 @@ let path = require('path');
 let express = require('express');
 let sqlite3 = require('sqlite3');
 
+let chart = require('chart.js');
 
 let public_dir = path.join(__dirname, 'public');
 let template_dir = path.join(__dirname, 'templates');
@@ -103,12 +104,12 @@ app.get('/state/:selected_state', (req, res) => {
                 let renewable_counts = [];
                 for (let i = 0; i < rows.length; i++) {
                     let currentTotal = rows[i]['coal'] + rows[i]['natural_gas'] + rows[i]['nuclear'] + rows[i]['petroleum'] + rows[i]['renewable'];
-                    coal_counts.push(rows[i]['coal']);
-                    natural_gas_counts.push(rows[i]['natural_gas']);
-                    nuclear_counts.push(rows[i]['nuclear']);
-                    petroleum_counts.push(rows[i]['petroleum']);
-                    renewable_counts.push(rows[i]['renewable']);
-    
+                    coal_counts.push(rows[i]['coal'] / currentTotal);
+                    natural_gas_counts.push(rows[i]['natural_gas'] / currentTotal);
+                    nuclear_counts.push(rows[i]['nuclear'] / currentTotal);
+                    petroleum_counts.push(rows[i]['petroleum'] / currentTotal);
+                    renewable_counts.push(rows[i]['renewable'] / currentTotal);
+
                     tr += '<tr>';
                     tr += `<td>${rows[i]['year']}</td>`;
                     tr += `<td>${rows[i]['coal']}</td>`;

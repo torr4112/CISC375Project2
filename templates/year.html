@@ -6,15 +6,17 @@
     <title>US Energy Consumption</title>
     <link rel="stylesheet" href="/css/foundation.css">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
     <script type="application/javascript">
         // `year` and total counts for entire US => set these variables equal to appropriate value
         //   * these variables will be defined and accessible from any script loaded after this one
         var year = '{{YEAR_VAR}}';
-        var coal_count = {{COAL_VAR}};
-        var natural_gas_count = {{NG_VAR}};
-        var nuclear_count = {{N_VAR}};
-        var petroleum_count = {{P_VAR}};
-        var renewable_count = {{R_VAR}};
+        var coal_count = '{{COAL_VAR}}';
+        var natural_gas_count = '{{NG_VAR}}';
+        var nuclear_count = '{{N_VAR}}';
+        var petroleum_count = '{{P_VAR}}';
+        var renewable_count = '{{R_VAR}}';
     </script>
 </head>
 <body onload="console.log(year, coal_count, natural_gas_count, nuclear_count, petroleum_count, renewable_count)">
@@ -41,5 +43,32 @@
             </div>
         </div>
     </div>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 </body>
+
+<script>
+    var xValues = ["Coal", "Natural Gas", "Nuclear", "Petroleum", "Renewable"];
+    var yValues = [coal_count, natural_gas_count, nuclear_count, petroleum_count, renewable_count];
+    var barColors = ["red", "green","blue","orange","brown"];
+
+    const ctx = document.getElementById('myChart');
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: xValues,
+        datasets: [{
+          backgroundColor: barColors,
+          data: yValues
+        }]
+      },
+      options: {
+        legend: {display: false},
+        title: {
+          display: true,
+          text: `Graph of Energy Consumption for the Entire US in ${year}`
+        }
+      }
+    });
+    </script>
+
 </html>

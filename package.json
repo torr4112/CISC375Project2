@@ -8,8 +8,8 @@
     },
     "contributors": [
         {
-            "name": "Ben Elliot",
-            "email": "ben.elliot@stthomas.edu"
+            "name": "Ben Elliott",
+            "email": "ben.elliott@stthomas.edu"
         },
         {
             "name": "Tonya Hopkins",
@@ -22,6 +22,7 @@
         "url": "https://github.com/torr4112/CISC375Project2"
     },
     "dependencies": {
+        "chart.js": "^3.6.0",
         "express": "^4.17.1",
         "sqlite3": "^5.0.0"
     }
