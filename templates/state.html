@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>US Energy Consumption</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/foundation.css">
     <script type="application/javascript">
         // `state` and arrays of consumption per year => set these variables equal to appropriate value
         //   * these variables will be defined and accessible from any script loaded after this one
@@ -17,18 +18,28 @@
     </script>
 </head>
 <body onload="console.log(state, coal_counts, natural_gas_counts, nuclear_counts, petroleum_counts, renewable_counts)">
-    <h1>{{STATE}}</h1>
-    <table>
-        <tr>
-            <th>Year</th>
-            <th>Coal</th>
-            <th>Natural Gas</th>
-            <th>Nuclear</th>
-            <th>Petroleum</th>
-            <th>Renewable</th>
-            <th>Total</th>
-        </tr>
-        {{DATA}}
-    </table>
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="cell auto">
+                <h1>{{STATE}}</h1>
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell">
+                <table class="table-scroll">
+                    <tr>
+                        <th>Year</th>
+                        <th>Coal</th>
+                        <th>Natural Gas</th>
+                        <th>Nuclear</th>
+                        <th>Petroleum</th>
+                        <th>Renewable</th>
+                        <th>Total</th>
+                    </tr>
+                    {{DATA}}
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

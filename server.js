@@ -86,11 +86,14 @@ app.get('/state/:selected_state', (req, res) => {
     let state = req.params.selected_state;
     state = state.toUpperCase();
     fs.readFile(path.join(template_dir, 'state.html'), 'utf-8', (err, template) => {
+        db.each("SELECT state_name from States where state_abbreviation = ?", state, function (err, row) {
+            template = template.replace("{{STATE}}", row['state_name']);
+        });
+
         db.all("SELECT * from Consumption WHERE state_abbreviation = ?", state, function(err, rows) {
             if (err || rows.length == 0) {
                 res.status(404).send(`There is no data for state ${state}`);
             } else {
-                template = template.replace('{{STATE}}', state);
 
                 let tr = '';
                 let coal_counts = [];
@@ -133,10 +136,12 @@ app.get('/state/:selected_state', (req, res) => {
 // GET request handler for '/energy/*'
 app.get('/energy/:selected_energy_source', (req, res) => {
     let source = req.params.selected_energy_source;
+    let sources = ['coal', 'natural_gas', 'nuclear', 'petroleum', 'renewable'];
+
     fs.readFile(path.join(template_dir, 'energy.html'), 'utf-8', (err, template) => {
         let queryStatement = `SELECT ${source}, year, state_abbreviation FROM Consumption ORDER by year, state_abbreviation`;
         db.all(queryStatement, function(err, rows) {
-            if (err || rows.length == 0) {
+            if (err || rows.length == 0 || sources.indexOf(source) == -1) {
                 res.status(404).send(`There is no data for type ${source}`);
             } else {
                 template = template.replace("{{TYPE}}", source);

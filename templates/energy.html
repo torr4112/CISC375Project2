@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>US Energy Consumption</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/foundation.css">
     <script type="application/javascript">
         // `energy_type` and object of consumption per year per state => set these variables equal to appropriate value
         //   * these variables will be defined and accessible from any script loaded after this one
@@ -13,13 +14,23 @@
     </script>
 </head>
 <body onload = "fillInStates(); normalizeEnergyCounts();">
-    <h1>{{TYPE}}</h1>
-    <table id = "table">
-        <tr id="headers">
-            <th>Year</th>
-        </tr>
-        {{DATA}}
-    </table>
+    <div class="grid-container">
+        <div class="grid-x grid-padding-x">
+            <div class="cell auto">
+                <h1>{{TYPE}}</h1>
+            </div>
+        </div>
+        <div class="grid-x grid-padding-x">
+            <div class="cell auto table-scroll">
+                <table>
+                    <tr id="headers">
+                        <th>Year</th>
+                    </tr>
+                    {{DATA}}
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 <script>
@@ -59,5 +70,6 @@
             energyCountsObject[states[i]] = energyArr;
         }
         energy_counts = energyCountsObject;
+        console.log(energy_counts);
     }
 </script>
