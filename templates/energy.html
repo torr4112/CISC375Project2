@@ -103,6 +103,42 @@
         }
         fillInStates();
         normalizeEnergyCounts();
+
+        var xValues = [];
+        for (let i = 0; i < 59; i++) {
+            xValues.push(i + 1960);
+        }
+
+
+        var myChart = new Chart("myChart", {
+            type: 'line',
+            data: {
+                labels: xValues,
+                datasets: [],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: `Graph of each State's Yearly Consumption for ${energy_type}`
+                    }
+                }
+            },
+        });
+
+        for(let i = 0; i < 50; i++) {
+            myChart.data.datasets.push({
+                label: states[i],
+                borderColor: '#'+(0x1000000+Math.random()*0xffffff).toString(16).substr(1,6),
+                data: energy_counts[states[i]]
+            });
+        }
+        myChart.update();
+
     </script>
     
     <script src="/js/jquery-3.6.0.min.js"></script>

@@ -105,11 +105,11 @@ app.get('/state/:selected_state', (req, res) => {
                 let renewable_counts = [];
                 for (let i = 0; i < rows.length; i++) {
                     let currentTotal = rows[i]['coal'] + rows[i]['natural_gas'] + rows[i]['nuclear'] + rows[i]['petroleum'] + rows[i]['renewable'];
-                    coal_counts.push(rows[i]['coal'] / currentTotal);
-                    natural_gas_counts.push(rows[i]['natural_gas'] / currentTotal);
-                    nuclear_counts.push(rows[i]['nuclear'] / currentTotal);
-                    petroleum_counts.push(rows[i]['petroleum'] / currentTotal);
-                    renewable_counts.push(rows[i]['renewable'] / currentTotal);
+                    coal_counts.push((rows[i]['coal'] / currentTotal) * 100.0);
+                    natural_gas_counts.push((rows[i]['natural_gas'] / currentTotal) * 100.0);
+                    nuclear_counts.push((rows[i]['nuclear'] / currentTotal) * 100.0);
+                    petroleum_counts.push((rows[i]['petroleum'] / currentTotal) * 100.0);
+                    renewable_counts.push((rows[i]['renewable'] / currentTotal) * 100.0);
 
                     tr += '<tr>';
                     tr += `<td>${rows[i]['year']}</td>`;

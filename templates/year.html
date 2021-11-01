@@ -81,6 +81,14 @@
     var xValues = ["Coal", "Natural Gas", "Nuclear", "Petroleum", "Renewable"];
     var yValues = [coal_count, natural_gas_count, nuclear_count, petroleum_count, renewable_count];
     var barColors = ["red", "green", "blue", "orange", "purple"];
+    let max = 0;
+    for (let i = 0; i < yValues.length; i++) {
+        let curr = parseInt(yValues[i])
+        if (max < curr) {
+            max = curr;
+        }
+    }
+    max = Math.round(max / 1000000) * 1000000;
 
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
@@ -100,6 +108,11 @@
                 title: {
                     display: true,
                     text: `Graph of Energy Consumption for the Entire US in ${year}`
+                }
+            }, scales: {
+                y: {
+                    min: 0.0,
+                    max: max
                 }
             }
         }
