@@ -173,7 +173,9 @@ app.get('/energy/:selected_energy_source', (req, res) => {
                 template = template.replace('{{DATA}}', tr);
                 template = template.replace('{{TYPE_VAR}}', source);
                 template = template.replace('energy_counts', `energy_counts = [${energy_counts}]`);
-    
+                template = template.replace('{{IMG}}', `/img/${source}.jpg`);
+                template = template.replace('{{ALT}}', `image of ${source}.jpg`);
+                
                 res.status(200).type('html').send(template);
             }
         });
