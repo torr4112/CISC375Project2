@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>US Energy Consumption</title>
     <link rel="stylesheet" href="/css/foundation.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -19,6 +20,7 @@
         var renewable_count = '{{R_VAR}}';
     </script>
 </head>
+
 <body>
     <div class="top-bar">
         <ul class="dropdown menu" data-dropdown-menu>
@@ -57,7 +59,7 @@
                         <th>Total</th>
                     </tr>
                     {{DATA}}
-                </table>      
+                </table>
             </div>
         </div>
 
@@ -68,7 +70,7 @@
         <div class="float-left">
             <a id="previous">Previous</a>
         </div>
-    
+
         <div class="float-right">
             <a id="next">Next</a>
         </div>
@@ -78,33 +80,38 @@
 <script>
     var xValues = ["Coal", "Natural Gas", "Nuclear", "Petroleum", "Renewable"];
     var yValues = [coal_count, natural_gas_count, nuclear_count, petroleum_count, renewable_count];
-    var barColors = ["red", "green","blue","orange","purple"];
+    var barColors = ["red", "green", "blue", "orange", "purple"];
 
     const ctx = document.getElementById('myChart');
     new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: xValues,
-        datasets: [{
-          backgroundColor: barColors,
-          data: yValues
-        }]
-      },
-      options: {
-        legend: {display: false},
-        title: {
-          display: true,
-          text: `Graph of Energy Consumption for the Entire US in ${year}`
-        }
-      }
-    });
-    </script>
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+                label: 'Amount Consumed (in billion Btu)',
+                data: yValues,
+                backgroundColor: barColors
+            }]
 
-    <script src="/js/jquery-3.6.0.min.js"></script>
-    <script src="/js/vendor.js"></script>
-    <script src="/js/foundation.js"></script>
-    <script type="application/javascript">
-        $(document).foundation();
-    </script>
-    <script src="/js/nav.js"></script>
+        },
+        options: {
+            plugins: {
+                legend: { display: false },
+                title: {
+                    display: true,
+                    text: `Graph of Energy Consumption for the Entire US in ${year}`
+                }
+            }
+        }
+    });
+</script>
+
+<script src="/js/jquery-3.6.0.min.js"></script>
+<script src="/js/vendor.js"></script>
+<script src="/js/foundation.js"></script>
+<script type="application/javascript">
+    $(document).foundation();
+</script>
+<script src="/js/nav.js"></script>
+
 </html>

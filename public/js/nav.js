@@ -1,6 +1,6 @@
-const states  = ['AK','AL','AR','AZ','CA','CO','CT','DC','DE','FL','GA','HI','IA','ID','IL','IN','KS','KY',
-'LA','MA','MD','ME','MI','MN','MO','MS','MT','NC','ND','NE','NH','NJ','NM','NV','NY','OH','OK','OR','PA',
-'RI','SC','SD','TN','TX','UT','VA','VT','WA','WI','WV','WY'];
+const states = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY',
+    'LA', 'MA', 'MD', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA',
+    'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'];
 
 
 let statesDropdown = document.getElementById('states');
@@ -68,23 +68,21 @@ let sources = ["coal", "natural_gas", "nuclear", "petroleum", "renewable"];
 let url = document.URL;
 let parts = url.split("/")
 if (url.indexOf("state") > 0) {
-    let currentState = parts[parts.length-1];
+    let currentState = parts[parts.length - 1];
     let currentStateIdx = states.indexOf(currentState);
     let nextState;
     let previousState;
     if (currentStateIdx == 0) {
         previousState = states[states.length - 1];
     } else {
-        previousState = states[(currentStateIdx-1) % states.length];
+        previousState = states[(currentStateIdx - 1) % states.length];
     }
-    nextState = states[(currentStateIdx+1) % states.length];
-
-
+    
+    nextState = states[(currentStateIdx + 1) % states.length];
     next.href = '/state/' + nextState;
     previous.href = '/state/' + previousState;
 } else if (url.indexOf("year") > 0) {
-    console.log('e');
-    let currentYear = parts[parts.length-1] - 1960;
+    let currentYear = parts[parts.length - 1] - 1960;
     let nextYear = (currentYear + 1) + 1960;
     let previousYear = (currentYear - 1) + 1960;
     if (nextYear > 2018) {
@@ -92,19 +90,18 @@ if (url.indexOf("state") > 0) {
     } else if (previousYear < 1960) {
         previousYear = 2018;
     }
+
     next.href = '/year/' + nextYear;
     previous.href = '/year/' + previousYear;
 } else {
-    console.log('e2');
-
-    let currentSource = parts[parts.length-1];
+    let currentSource = parts[parts.length - 1];
     let currentSourceIdx = sources.indexOf(currentSource);
-    let nextSource = sources[(currentSourceIdx+1) % sources.length];
+    let nextSource = sources[(currentSourceIdx + 1) % sources.length];
     let previousSource;
     if (currentSourceIdx == 0) {
         previousSource = sources[sources.length - 1];
     } else {
-        previousSource = sources[(currentSourceIdx-1) % sources.length];
+        previousSource = sources[(currentSourceIdx - 1) % sources.length];
     }
 
     next.href = '/energy/' + nextSource;

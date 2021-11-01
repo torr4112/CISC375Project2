@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>US Energy Consumption</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/foundation.css">
@@ -19,6 +20,7 @@
         var renewable_counts;
     </script>
 </head>
+
 <body>
     <div class="top-bar">
         <ul class="dropdown menu" data-dropdown-menu>
@@ -84,59 +86,52 @@
             type: "line",
             data: {
                 labels: xValues,
-                datasets: [{ 
-                        data: coal_counts,
-                        borderColor: "red",
-                        backgroundColor: "red",
-                        label: "Coal",
-                        fill: true
-                    }, { 
-                        data: natural_gas_counts,
-                        borderColor: "green",
-                        backgroundColor: "green",
-                        label: "Natural Gas",
-                        fill: true
-                    }, { 
-                        data: nuclear_counts,
-                        borderColor: "blue",
-                        backgroundColor: "blue",
-                        label: "Nuclear",
-                        fill: true
-                    }, { 
-                        data: petroleum_counts,
-                        borderColor: "orange",
-                        backgroundColor: "orange",
-                        label: "Petroleum",
-                        fill: true
-                    }, { 
-                        data: renewable_counts,
-                        borderColor: "purple",
-                        backgroundColor: "purple",
-                        label: "Renewable",
-                        fill: true
+                datasets: [{
+                    data: coal_counts,
+                    borderColor: "red",
+                    backgroundColor: "red",
+                    label: "Coal",
+                    fill: true
+                }, {
+                    data: natural_gas_counts,
+                    borderColor: "green",
+                    backgroundColor: "green",
+                    label: "Natural Gas",
+                    fill: true
+                }, {
+                    data: nuclear_counts,
+                    borderColor: "blue",
+                    backgroundColor: "blue",
+                    label: "Nuclear",
+                    fill: true
+                }, {
+                    data: petroleum_counts,
+                    borderColor: "orange",
+                    backgroundColor: "orange",
+                    label: "Petroleum",
+                    fill: true
+                }, {
+                    data: renewable_counts,
+                    borderColor: "purple",
+                    backgroundColor: "purple",
+                    label: "Renewable",
+                    fill: true
                 }]
             },
             options: {
-                legend: {display: false},
+                legend: { display: false },
                 scales: {
-                    /*
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Month'
-                        }
-                    },*/
                     y: {
                         stacked: true,
                     }
-                }/*, 
-                interaction: {
-                    mode: 'nearest',
-                    axis: 'y',
+                }, interaction: {
                     intersect: false
-                }*/
-                ,     interaction: {
-                    intersect: false
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: `Percentage of Energy Consumption of Each Energy Type in ${state}`
+                    }
                 }
             }
         });
@@ -150,4 +145,5 @@
     </script>
     <script src="/js/nav.js"></script>
 </body>
+
 </html>

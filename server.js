@@ -89,6 +89,7 @@ app.get('/state/:selected_state', (req, res) => {
     fs.readFile(path.join(template_dir, 'state.html'), 'utf-8', (err, template) => {
         db.each("SELECT state_name from States where state_abbreviation = ?", state, function (err, row) {
             template = template.replace("{{STATE}}", row['state_name']);
+            template = template.replace('{{STATE_VAR}}', row['state_name']);
         });
 
         db.all("SELECT * from Consumption WHERE state_abbreviation = ?", state, function(err, rows) {
@@ -121,13 +122,11 @@ app.get('/state/:selected_state', (req, res) => {
                     tr += '</tr>';
                 }
                 template = template.replace('{{DATA}}', tr);
-                template = template.replace('{{STATE_VAR}}', state);
                 template = template.replace("coal_counts", `coal_counts = [${coal_counts}]`);
                 template = template.replace("natural_gas_counts", `natural_gas_counts = [${natural_gas_counts}]`);
                 template = template.replace("nuclear_counts", `nuclear_counts = [${nuclear_counts}]`);
                 template = template.replace("petroleum_counts", `petroleum_counts = [${petroleum_counts}]`);
                 template = template.replace("renewable_counts", `renewable_counts = [${renewable_counts}]`);
-
                 res.status(200).type('html').send(template);
             }
         });
