@@ -121,6 +121,8 @@ app.get('/state/:selected_state', (req, res) => {
                     tr += `<td>${currentTotal}</td>`;
                     tr += '</tr>';
                 }
+                template = template.replace('{{IMG}}', `/img/flags/us-${state.toLowerCase()}-320w.png`);
+                template = template.replace('{{ALT}}', `Flag of ${state}`);
                 template = template.replace('{{DATA}}', tr);
                 template = template.replace("coal_counts", `coal_counts = [${coal_counts}]`);
                 template = template.replace("natural_gas_counts", `natural_gas_counts = [${natural_gas_counts}]`);
