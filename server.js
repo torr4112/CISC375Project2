@@ -146,8 +146,6 @@ app.get('/energy/:selected_energy_source', (req, res) => {
             if (err || rows.length == 0 || sources.indexOf(source) == -1) {
                 res.status(404).send(`There is no data for type ${source}`);
             } else {
-                template = template.replace("{{TYPE}}", source);
-
                 let tr = '';
                 let currentTotal = 0;
                 let energy_counts = [];
@@ -173,11 +171,19 @@ app.get('/energy/:selected_energy_source', (req, res) => {
                     }   
                 }
                 template = template.replace('{{DATA}}', tr);
-                template = template.replace('{{TYPE_VAR}}', source);
-                template = template.replace('energy_counts', `energy_counts = [${energy_counts}]`);
+
                 template = template.replace('{{IMG}}', `/img/${source}.jpg`);
                 template = template.replace('{{ALT}}', `image of ${source}.jpg`);
+
+                if (source === 'natural_gas') {
+                    source = 'Natural Gas';
+                } else {
+                    source = source.charAt(0).toUpperCase() + source.substr(1);
+                }
                 
+                template = template.replace("{{TYPE}}", source);
+                template = template.replace('{{TYPE_VAR}}', source);
+                template = template.replace('energy_counts', `energy_counts = [${energy_counts}]`);
                 res.status(200).type('html').send(template);
             }
         });

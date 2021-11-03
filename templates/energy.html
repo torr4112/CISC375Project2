@@ -69,7 +69,6 @@
     <script>
         function fillInStates() {
             let headers = document.getElementById("headers");
-            console.log(states.length);
             for (let i = 0; i < states.length; i++) {
                 let stateHeader = document.createElement("th");
                 stateHeader.textContent = states[i];
@@ -101,7 +100,6 @@
                 energyCountsObject[states[i]] = energyArr;
             }
             energy_counts = energyCountsObject;
-            console.log(energy_counts);
         }
         fillInStates();
         normalizeEnergyCounts();
