@@ -12,8 +12,8 @@
             "email": "ben.elliott@stthomas.edu"
         },
         {
-            "name": "Tonya Hopkins",
-            "email": "tjhopkins@stthomas.edu"
+            "name": "Tanya Hopkins",
+            "email": "hopk3874@stthomas.edu"
         }
     ],
     "main": "server.js",
@@ -24,6 +24,6 @@
     "dependencies": {
         "chart.js": "^3.6.0",
         "express": "^4.17.1",
-        "sqlite3": "^5.0.0"
+        "sqlite3": "^5.0.2"
     }
 }
